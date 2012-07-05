@@ -1,0 +1,72 @@
+@(message: String)(items:List[models.Item]) 
+
+@main("Item Lister") {
+
+<div class="page-header">
+	<h1>Item Lister</h1>
+</div>
+
+@if(flash.contains("error")){
+	<div class="alert alert-error">
+		@flash.get("error")
+	</div>	
+}
+
+<div id="add-item-container">
+	<form action="@routes.Application.addItem" method="post" class="form-horizontal" enctype="multipart/form-data">
+		<fieldset>
+			<legend>
+				Add a new item
+				<a class="btn" href="#"><i class="icon-plus"></i></a>
+			</legend>
+			<div id="add-item-fields">
+				<div class="control-group">
+					<label class="control-label" for="input01">Title</label>
+					<div class="controls">
+						<input name="title" type="text" class="input-xlarge" id="title">
+						<p class="help-block">Add you item title</p>
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="photo">Photo</label>
+					<div class="controls">
+						<input name="photo" type="file" class="input-xlarge" id="photo">
+						<p class="help-block">Add your photo here</p>
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="input01">Brand</label>
+					<div class="controls">
+						<select name="brand">
+							<option>Gucci</option>
+							<option>Prada</option>
+							<option>Forever 21</option>
+							<option>Armani</option>
+							<option>Armani Exchange</option>
+						</select>
+						<p class="help-block">Add you brand title</p>
+					</div>
+				</div>
+				<div class="form-actions">
+					<button type="submit" class="btn btn-primary">Add it!</button>
+				</div>
+			</div>
+		</fieldset>
+	</form>
+</div>
+
+@for(item <- items) {
+<div class="row">
+	<div class="span1">
+		@if(item.getPhoto != null){ <img
+			src="@routes.Application.getItemImage(item.getId())" width="50" />
+		}else{ <img src='@routes.Assets.at("img/icon_lostfound.png")'
+			width="50" /> }
+	</div>
+	<div class="span4">
+		<h3>@item.getTitle()</h3>
+		<i>@item.getBrand()</i>
+	</div>
+</div>
+<hr />
+} }

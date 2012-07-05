@@ -1,4 +1,16 @@
-This is your new Play 2.0 application
+Item Lister application
 =====================================
 
-This file will be packaged with your application, when using `play dist`.
+This is a small application allowing to add items to a list and view them.
+
+Several areas still need to be improved even though the basic functionality works :
+- use play 2.0 form helpers
+- put proper validation (related to first point)
+- "ajaxify" the application, ie no need to refresh the whole page after adding an item
+- scale images that are too big
+- allow for updating and deleting items
+
+The current configuration uses a H2 database in memory.
+Spring data JPA is used for the persistence layer.
+Twitter bootstrap is used for styling.
+Jquery is used for javascript.   
